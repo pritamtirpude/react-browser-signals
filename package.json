@@ -1,0 +1,42 @@
+{
+  "name": "react-browser-signals",
+  "version": "0.1.0",
+  "description": "React hooks for browser capability signals.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.build.json && vite build",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist"
+  },
+  "peerDependencies": {
+    "react": ">18.0.0",
+    "react-dom": ">18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "rimraf": "^6.0.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
