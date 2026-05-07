@@ -1,9 +1,13 @@
+import { useGeolocation } from "./useGeolocation";
 import { useMemory } from "./useMemory";
 import { useNetwork } from "./useNetwork";
 
 export const BatteryCheck = () => {
   const { supported, online, effectiveType, downlink, rtt } = useNetwork();
   const { supported: memorySupported, deviceMemory } = useMemory();
+  const { supported: geolocationSupported } = useGeolocation();
+
+  console.log("geolocation", geolocationSupported);
 
   return (
     <section>
@@ -16,6 +20,8 @@ export const BatteryCheck = () => {
       <h3>Memory Check</h3>
       <p>supported: {String(memorySupported)}</p>
       <p>deviceMemory: {deviceMemory ?? "n/a"}</p>
+      <h3>Geolocation Check</h3>
+      <p>supported: {String(geolocationSupported)}</p>
     </section>
   );
 };

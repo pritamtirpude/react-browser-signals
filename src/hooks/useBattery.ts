@@ -9,16 +9,16 @@ type BatteryEventName =
   | "dischargingtimechange"
   | "levelchange";
 
-interface BatteryManagerLike extends EventTarget {
+type BatteryManagerLike = EventTarget & {
   charging: boolean;
   chargingTime: number;
   dischargingTime: number;
   level: number;
-}
+};
 
-interface NavigatorWithBattery extends Navigator {
+type NavigatorWithBattery = Navigator & {
   getBattery?: () => Promise<BatteryManagerLike>;
-}
+};
 
 const BATTERY_EVENTS: BatteryEventName[] = [
   "chargingchange",

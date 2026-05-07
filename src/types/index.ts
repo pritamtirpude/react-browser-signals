@@ -1,11 +1,11 @@
-export interface BatteryInfo {
+export type BatteryInfo = {
   charging: boolean;
   chargingTime: number;
   dischargingTime: number;
   level: number;
-}
+};
 
-export interface UseBatteryResult {
+export type UseBatteryResult = {
   supported: boolean;
   loading: boolean;
   error: string | null;
@@ -15,7 +15,7 @@ export interface UseBatteryResult {
   level: number | null;
   levelPercent: number | null;
   levelDisplay: string | null;
-}
+};
 
 export type NetworkData = {
   supported: boolean;
@@ -44,4 +44,18 @@ export type UserAgentClientHints = {
   brands: UserAgentBrand[];
   mobile: boolean;
   platform: string;
+};
+
+export type GeolocationData = {
+  supported: boolean;
+  loading: boolean;
+  error: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  accuracy: number | null;
+  altitude: number | null;
+  altitudeAccuracy: number | null;
+  heading: number | null;
+  speed: number | null;
+  timestamp: number | null;
 };
