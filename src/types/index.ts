@@ -65,3 +65,11 @@ export type LanguageData = {
   language: string | null;
   languages: string[];
 };
+
+export type ClipboardSupportData = {
+  supported: boolean;
+  canRead: boolean;
+  canWrite: boolean;
+  permissionRead: PermissionState | null;
+  permissionWrite: PermissionState | null;
+};

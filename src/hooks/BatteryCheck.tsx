@@ -1,3 +1,4 @@
+import { useClipboardSupport } from "./useClipboardSupport";
 import { useGeolocation } from "./useGeolocation";
 import { useLanguage } from "./useLanguage";
 import { useMemory } from "./useMemory";
@@ -8,6 +9,13 @@ export const BatteryCheck = () => {
   const { supported: memorySupported, deviceMemory } = useMemory();
   const { supported: geolocationSupported } = useGeolocation();
   const { supported: languageSupported, language, languages } = useLanguage();
+  const {
+    supported: clipboardSupported,
+    canRead,
+    canWrite,
+    permissionRead,
+    permissionWrite,
+  } = useClipboardSupport();
 
   return (
     <section>
@@ -26,6 +34,12 @@ export const BatteryCheck = () => {
       <p>supported: {String(languageSupported)}</p>
       <p>language: {language ?? "n/a"}</p>
       <p>languages: {languages.length > 0 ? languages.join(", ") : "n/a"}</p>
+      <h3>Clipboard Support Check</h3>
+      <p>supported: {String(clipboardSupported)}</p>
+      <p>canRead: {String(canRead)}</p>
+      <p>canWrite: {String(canWrite)}</p>
+      <p>permissionRead: {permissionRead ?? "n/a"}</p>
+      <p>permissionWrite: {permissionWrite ?? "n/a"}</p>
     </section>
   );
 };
