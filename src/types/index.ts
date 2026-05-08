@@ -59,3 +59,9 @@ export type GeolocationData = {
   speed: number | null;
   timestamp: number | null;
 };
+
+export type LanguageData = {
+  supported: boolean;
+  language: string | null;
+  languages: string[];
+};
