@@ -7,6 +7,7 @@ export { useHardware } from "./hooks/useHardware";
 export { useLanguage } from "./hooks/useLanguage";
 export { useMemory } from "./hooks/useMemory";
 export { useNetwork } from "./hooks/useNetwork";
+export { useShare } from "./hooks/useShare";
 export { useStorageEstimate } from "./hooks/useStorageEstimate";
 export { useUserAgent } from "./hooks/useUserAgent";
 export { useVibration } from "./hooks/useVibration";

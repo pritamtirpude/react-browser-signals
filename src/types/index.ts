@@ -119,3 +119,10 @@ export type UseVibrationResult = {
   vibrate: (pattern: number | number[]) => boolean;
   cancel: () => boolean;
 };
+
+export type UseShareResult = {
+  supported: boolean;
+  canShareText: boolean;
+  canShareFiles: boolean;
+  isSecureContext: boolean;
+};

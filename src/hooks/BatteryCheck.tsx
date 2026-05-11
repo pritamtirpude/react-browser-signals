@@ -5,6 +5,7 @@ import { useHardware } from "./useHardware";
 import { useLanguage } from "./useLanguage";
 import { useMemory } from "./useMemory";
 import { useNetwork } from "./useNetwork";
+import { useShare } from "./useShare";
 import { useStorageEstimate } from "./useStorageEstimate";
 import { useWakeLock } from "./useWakeLock";
 
@@ -48,6 +49,12 @@ export const BatteryCheck = () => {
     available: bluetoothAvailable,
     error: bluetoothError,
   } = useBluetoothAvailability();
+  const {
+    supported: shareSupported,
+    canShareText,
+    canShareFiles,
+    isSecureContext,
+  } = useShare();
 
   return (
     <section>
@@ -96,6 +103,11 @@ export const BatteryCheck = () => {
       <p>supported: {String(bluetoothSupported)}</p>
       <p>available: {String(bluetoothAvailable)}</p>
       <p>error: {bluetoothError ?? "n/a"}</p>
+      <h3>Share API Check</h3>
+      <p>supported: {String(shareSupported)}</p>
+      <p>canShareText: {String(canShareText)}</p>
+      <p>canShareFiles: {String(canShareFiles)}</p>
+      <p>isSecureContext: {String(isSecureContext)}</p>
     </section>
   );
 };
