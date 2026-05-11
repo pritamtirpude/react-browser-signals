@@ -1,8 +1,13 @@
 export { BatteryCheck } from "./hooks/BatteryCheck";
 export { useBattery } from "./hooks/useBattery";
+export { useBluetoothAvailability } from "./hooks/useBluetoothAvailability";
 export { useClipboardSupport } from "./hooks/useClipboardSupport";
 export { useGeolocation } from "./hooks/useGeolocation";
+export { useHardware } from "./hooks/useHardware";
 export { useLanguage } from "./hooks/useLanguage";
 export { useMemory } from "./hooks/useMemory";
 export { useNetwork } from "./hooks/useNetwork";
+export { useStorageEstimate } from "./hooks/useStorageEstimate";
 export { useUserAgent } from "./hooks/useUserAgent";
+export { useVibration } from "./hooks/useVibration";
+export { useWakeLock } from "./hooks/useWakeLock";

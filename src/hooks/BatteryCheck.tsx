@@ -1,8 +1,12 @@
+import { useBluetoothAvailability } from "./useBluetoothAvailability";
 import { useClipboardSupport } from "./useClipboardSupport";
 import { useGeolocation } from "./useGeolocation";
+import { useHardware } from "./useHardware";
 import { useLanguage } from "./useLanguage";
 import { useMemory } from "./useMemory";
 import { useNetwork } from "./useNetwork";
+import { useStorageEstimate } from "./useStorageEstimate";
+import { useWakeLock } from "./useWakeLock";
 
 export const BatteryCheck = () => {
   const { supported, online, effectiveType, downlink, rtt } = useNetwork();
@@ -16,6 +20,34 @@ export const BatteryCheck = () => {
     permissionRead,
     permissionWrite,
   } = useClipboardSupport();
+  const {
+    supported: storageSupported,
+    quota,
+    usage,
+    usageDetails,
+    persisted,
+    refresh,
+    requestPersistence,
+  } = useStorageEstimate();
+  const {
+    supported: hardwareSupported,
+    hardwareConcurrency,
+    maxTouchPoints,
+    pdfViewerEnabled,
+    platform,
+  } = useHardware();
+  const {
+    supported: wakeLockSupported,
+    active: wakeLockActive,
+    error: wakeLockError,
+    request: requestWakeLock,
+    release: releaseWakeLock,
+  } = useWakeLock();
+  const {
+    supported: bluetoothSupported,
+    available: bluetoothAvailable,
+    error: bluetoothError,
+  } = useBluetoothAvailability();
 
   return (
     <section>
@@ -40,6 +72,30 @@ export const BatteryCheck = () => {
       <p>canWrite: {String(canWrite)}</p>
       <p>permissionRead: {permissionRead ?? "n/a"}</p>
       <p>permissionWrite: {permissionWrite ?? "n/a"}</p>
+      <h3>Storage Estimate Check</h3>
+      <p>supported: {String(storageSupported)}</p>
+      <p>quota: {quota ?? "n/a"}</p>
+      <p>usage: {usage ?? "n/a"}</p>
+      <p>usageDetails: {usageDetails ? JSON.stringify(usageDetails) : "n/a"}</p>
+      <p>persisted: {String(persisted)}</p>
+      <button onClick={refresh}>Refresh Storage Estimate</button>
+      <button onClick={requestPersistence}>Request Persistence</button>
+      <h3>Hardware Check</h3>
+      <p>supported: {String(hardwareSupported)}</p>
+      <p>hardwareConcurrency: {hardwareConcurrency ?? "n/a"}</p>
+      <p>maxTouchPoints: {maxTouchPoints ?? "n/a"}</p>
+      <p>pdfViewerEnabled: {String(pdfViewerEnabled)}</p>
+      <p>platform: {platform ?? "n/a"}</p>
+      <h3>Wake Lock Check</h3>
+      <p>supported: {String(wakeLockSupported)}</p>
+      <p>active: {String(wakeLockActive)}</p>
+      <p>error: {wakeLockError ?? "n/a"}</p>
+      <button onClick={requestWakeLock}>Request Wake Lock</button>
+      <button onClick={releaseWakeLock}>Release Wake Lock</button>
+      <h3>Bluetooth Availability Check</h3>
+      <p>supported: {String(bluetoothSupported)}</p>
+      <p>available: {String(bluetoothAvailable)}</p>
+      <p>error: {bluetoothError ?? "n/a"}</p>
     </section>
   );
 };

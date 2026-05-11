@@ -73,3 +73,49 @@ export type ClipboardSupportData = {
   permissionRead: PermissionState | null;
   permissionWrite: PermissionState | null;
 };
+
+export type StorageEstimateData = {
+  supported: boolean;
+  loading: boolean;
+  error: string | null;
+  quota: number | null;
+  usage: number | null;
+  usageDetails: Record<string, number> | null;
+  persisted: boolean | null;
+};
+
+export type UseStorageEstimateResult = StorageEstimateData & {
+  refresh: () => Promise<void>;
+  requestPersistence: () => Promise<boolean | null>;
+};
+
+export type HardwareData = {
+  supported: boolean;
+  hardwareConcurrency: number | null;
+  maxTouchPoints: number | null;
+  pdfViewerEnabled: boolean | null;
+  platform: string | null;
+};
+
+export type WakeLockData = {
+  supported: boolean;
+  active: boolean;
+  error: string | null;
+};
+
+export type UseWakeLockResult = WakeLockData & {
+  request: () => Promise<boolean>;
+  release: () => Promise<boolean>;
+};
+
+export type BluetoothAvailabilityData = {
+  supported: boolean;
+  available: boolean | null;
+  error: string | null;
+};
+
+export type UseVibrationResult = {
+  supported: boolean;
+  vibrate: (pattern: number | number[]) => boolean;
+  cancel: () => boolean;
+};
