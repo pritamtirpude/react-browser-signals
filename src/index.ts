@@ -1,4 +1,3 @@
-export { BatteryCheck } from "./hooks/BatteryCheck";
 export { useBattery } from "./hooks/useBattery";
 export { useBluetoothAvailability } from "./hooks/useBluetoothAvailability";
 export { useClipboardSupport } from "./hooks/useClipboardSupport";
