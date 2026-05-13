@@ -1,6 +1,6 @@
 {
   "name": "react-browser-signals",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React hooks for browser capability signals.",
   "license": "MIT",
   "type": "module",
