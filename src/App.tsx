@@ -95,6 +95,17 @@ const installCode = `npm i react-browser-signals\n\n// or\nyarn add react-browse
 
 const importCode = `import {\n  useBattery,\n  useBluetoothAvailability,\n  useClipboardSupport,\n  useGeolocation,\n  useHardware,\n  useLanguage,\n  useMemory,\n  useNetwork,\n  useShare,\n  useStorageEstimate,\n  useUserAgent,\n  useVibration,\n  useWakeLock\n} from "react-browser-signals";`;
 
+const GithubIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="github-icon"
+    aria-hidden="true"
+  >
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+  </svg>
+);
+
 const App = () => {
   return (
     <main className="page">
@@ -173,6 +184,34 @@ const App = () => {
           display: grid;
           gap: 16px;
           grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .repo-link {
+          width: fit-content;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          text-decoration: none;
+          color: var(--accent);
+          border: 1px solid rgba(0, 109, 119, 0.35);
+          background: rgba(131, 197, 190, 0.14);
+          border-radius: 999px;
+          padding: 8px 12px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+        }
+
+        .repo-link:hover {
+          transform: translateY(-1px);
+          background: rgba(131, 197, 190, 0.24);
+          border-color: rgba(0, 109, 119, 0.52);
+        }
+
+        .github-icon {
+          width: 16px;
+          height: 16px;
+          flex-shrink: 0;
         }
 
         .metric {
@@ -316,6 +355,15 @@ const App = () => {
           battery, network, language, geolocation, wake lock and storage. Use
           these hooks to adapt UX to device reality in seconds.
         </p>
+        <a
+          className="repo-link"
+          href="https://github.com/pritamtirpude/react-browser-signals"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <GithubIcon />
+          View on GitHub
+        </a>
         <div className="hero-grid">
           <div className="metric">
             <strong>13 Hooks</strong>

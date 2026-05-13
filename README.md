@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+# react-browser-signals
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lightweight React hooks for reading real browser capability signals with TypeScript support.
 
-Currently, two official plugins are available:
+## Install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm i react-browser-signals
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```tsx
+import { useNetwork, useGeolocation } from "react-browser-signals";
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+function Demo() {
+  const network = useNetwork();
+  const geo = useGeolocation({ enableHighAccuracy: true });
+
+  return (
+    <div>
+      <p>Online: {String(network.online)}</p>
+      <p>
+        Location: {geo.latitude ?? "-"}, {geo.longitude ?? "-"}
+      </p>
+    </div>
+  );
+}
 ```
+
+## Included Hooks
+
+- `useBattery`
+- `useBluetoothAvailability`
+- `useClipboardSupport`
+- `useGeolocation`
+- `useHardware`
+- `useLanguage`
+- `useMemory`
+- `useNetwork`
+- `useShare`
+- `useStorageEstimate`
+- `useUserAgent`
+- `useVibration`
+- `useWakeLock`
+
+## Browser API Support
+
+This package wraps native browser APIs. Some of these APIs are not supported in all browsers, devices, or contexts.
+
+- `useBattery`, `useMemory`, `useWakeLock`, `useVibration`, and Bluetooth-related APIs may be unavailable in Safari/iOS or desktop browsers.
+- `useGeolocation`, `useClipboardSupport`, and `useShare` can require HTTPS, user gestures, and runtime permissions.
+- `useNetwork` and `useUserAgent` can return partial data depending on browser privacy restrictions.
+
+For production usage, always check support and error states before relying on values:
+
+```tsx
+const geo = useGeolocation();
+
+if (!geo.supported) return <p>Geolocation is not supported in this browser.</p>;
+if (geo.error) return <p>Location error: {geo.error}</p>;
+```
+
+Behavior can vary by browser version, OS, and security context.
+
+## License
+
+MIT
