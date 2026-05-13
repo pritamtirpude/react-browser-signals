@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     build: isLibBuild
       ? {
+          emptyOutDir: false,
           lib: {
             entry: resolve(__dirname, "src/index.ts"),
             name: "ReactBrowserSignals",
