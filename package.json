@@ -11,6 +11,7 @@
     "type": "git",
     "url": "https://github.com/pritamtirpude/react-browser-signals"
   },
+  "homepage": "https://react-browser-signals.vercel.app/",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
